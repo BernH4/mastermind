@@ -13,31 +13,41 @@ module Display
     }[number]
   end
 
-  def show_code_full(game_board)
-    (1..6).each do |i|
+  def clue_colors(clue)
+    {
+      '*' => "\e[91m\u25CF\e[0m ",
+      '?' => "\e[37m\u25CB\e[0m "
+    }[clue]
+  end
+
+  def show_code(game_board)
+    8.downto(1) do |i|
       show_code_line(game_board[:"line#{i}"])
     end
   end
 
   def show_code_line(code_arr)
     code_arr.each { |num| print code_colors(num) }
-    puts ''
-    puts ''
+    show_clues(0, 0) unless code_arr.include?('-')
+    print "\n\n"
   end
 
   def show_clues(exact, same)
     print '  Clues: '
     exact.times { print clue_colors('*') }
     same.times { print clue_colors('?') }
-    puts ''
   end
 
   def gen_game_board
     game_board = {}
-    (1..8).each do |i|
+    8.downto(1) do |i|
       game_board[:"line#{i}"] = ['-'] * 6
     end
     game_board
+  end
+
+  def update_game_board(game_board, line, code_arr)
+    game_board[:"line#{line}"] = code_arr
   end
 
   # show_code_full(game_board)
