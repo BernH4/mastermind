@@ -9,10 +9,19 @@ class HumanSolver
     @code = gen_code
   end
 
+  def code_broken?
+    @code == @last_input
+  end
+
   def play_human_solver
+    p @code
     (1..8).each do |round|
-      update_game_board(@game_board, round, req_input)
+      @last_input = req_input
+      # updates just the array with new inputs
+      update_game_board(@game_board, round, @last_input)
+      # displays the board with new inputs
       show_code(@game_board)
+      break if code_broken?
     end
   end
 end

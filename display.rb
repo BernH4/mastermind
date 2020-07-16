@@ -21,6 +21,7 @@ module Display
   end
 
   def show_code(game_board)
+    puts `clear`
     8.downto(1) do |i|
       show_code_line(game_board[:"line#{i}"])
     end
@@ -28,8 +29,21 @@ module Display
 
   def show_code_line(code_arr)
     code_arr.each { |num| print code_colors(num) }
-    show_clues(0, 0) unless code_arr.include?('-')
+    show_clues(get_exact(code_arr), get_same(code_arr)) unless code_arr.include?('-')
     print "\n\n"
+  end
+
+  def get_exact(code_arr)
+    count = 0
+    code_arr.each_with_index do |val, i|
+      count += 1 if val == @code[i]
+    end
+    count
+  end
+
+  def get_same(code_arr)
+    # This feels like bad code because i have to call get_exact again
+    code_arr.intersection(@code).length - get_exact(code_arr)
   end
 
   def show_clues(exact, same)
@@ -49,6 +63,4 @@ module Display
   def update_game_board(game_board, line, code_arr)
     game_board[:"line#{line}"] = code_arr
   end
-
-  # show_code_full(game_board)
 end
