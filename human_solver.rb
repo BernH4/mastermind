@@ -14,18 +14,21 @@ class HumanSolver
   end
 
   def play_human_solver
+    puts `clear`
+    show_code(@game_board)
     p @code
     (1..8).each do |round|
       @last_input = req_input
       # updates just the array with new inputs
       update_game_board(@game_board, round, @last_input)
       # displays the board with new inputs
+      puts `clear`
       show_code(@game_board)
       if code_broken?
         end_game('Code broken!')
         break
       end
-      end_game('Out of tries!')
     end
+    end_game('Out of tries!')
   end
 end

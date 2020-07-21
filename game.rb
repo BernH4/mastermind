@@ -4,23 +4,32 @@ require_relative 'display.rb'
 require_relative 'computer.rb'
 require_relative 'userinteraction.rb'
 require_relative 'human_solver.rb'
+require_relative 'instructions.rb'
 
 class Game
   attr_reader :board
   include Display
   include Computer
   include UserInteraction
+  include TextInstructions
   def initialize
     @game_board = gen_game_board
   end
 
   def play
-    show_code(@game_board)
-    human_solver
-    #    @code = gen_code
-    #    # TODO: addcode!
-    #    update_game_board(@game_board, 1, req_input)
-    #    show_code(@game_board)
+    puts `clear`
+    puts instructions
+    case STDIN.getch
+    when 'm'
+      puts 'todo'
+    when 'b'
+      human_solver
+      # TODO: FIX STRG + C!
+    when 'c'
+      exit
+    else
+      play
+    end
   end
 
   def human_solver

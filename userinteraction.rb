@@ -18,6 +18,13 @@ module UserInteraction
 
   def end_game(start_message)
     puts "#{start_message} Press (y) to play again or any other button to exit."
-    Game.new.play if STDIN.getch == 'y'
+    if STDIN.getch == 'y'
+      puts `clear`
+      Game.new.play
+    end
+    #return unless STDIN.getch == 'y'
+
+    #puts `clear`
+    #Game.new.play
   end
 end

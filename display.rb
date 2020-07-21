@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+# REMOVE ME
 module Display
   def code_colors(number)
     {
@@ -13,6 +13,13 @@ module Display
     }[number]
   end
 
+  def formatting(description, string)
+    {
+      'underline' => "\e[4;1m#{string}\e[0m",
+      'red' => "\e[31;1m#{string}\e[0m"
+    }[description]
+  end
+
   def clue_colors(clue)
     {
       '*' => "\e[91m\u25CF\e[0m ",
@@ -21,7 +28,6 @@ module Display
   end
 
   def show_code(game_board)
-    puts `clear`
     8.downto(1) do |i|
       show_code_line(game_board[:"line#{i}"])
     end
