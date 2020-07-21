@@ -21,7 +21,11 @@ class HumanSolver
       update_game_board(@game_board, round, @last_input)
       # displays the board with new inputs
       show_code(@game_board)
-      break if code_broken?
+      if code_broken?
+        end_game('Code broken!')
+        break
+      end
+      end_game('Out of tries!')
     end
   end
 end

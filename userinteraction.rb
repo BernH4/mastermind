@@ -15,4 +15,9 @@ module UserInteraction
   def validate_numbers?(arr)
     arr.all? { |num| (1..6) === num.to_i }
   end
+
+  def end_game(start_message)
+    puts "#{start_message} Press (y) to play again or any other button to exit."
+    Game.new.play if STDIN.getch == 'y'
+  end
 end
