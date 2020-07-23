@@ -49,7 +49,7 @@ module Display
 
   def get_same(code_arr)
     # This feels like bad code because i have to call get_exact again
-    code_arr.intersection(@code).length - get_exact(code_arr)
+    (code_arr & @code).length - get_exact(code_arr)
   end
 
   def show_clues(exact, same)

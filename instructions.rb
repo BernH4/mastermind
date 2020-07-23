@@ -3,7 +3,7 @@ module TextInstructions
   def instructions
     <<~HEREDOC
 
-
+                  TODO UPDATE THE NUMBERS IN HERE
       #{formatting('underline', 'How to play Mastermind:')}
 
       This is a 1-player game against the computer.
@@ -44,6 +44,7 @@ module TextInstructions
 
       Press 'm' to be the code MAKER
       Press 'b' to be the code BREAKER
+      Press 'x' to exit
     HEREDOC
   end
 end

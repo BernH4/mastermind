@@ -4,6 +4,7 @@ require_relative 'display.rb'
 require_relative 'computer.rb'
 require_relative 'userinteraction.rb'
 require_relative 'human_solver.rb'
+require_relative 'computer_solver.rb'
 require_relative 'instructions.rb'
 
 class Game
@@ -21,11 +22,11 @@ class Game
     puts instructions
     case STDIN.getch
     when 'm'
-      puts 'todo'
+      computer_solver
     when 'b'
       human_solver
-      # TODO: FIX STRG + C!
-    when 'c'
+    # TODO: FIX STRG + C!
+    when 'x'
       exit
     else
       play
@@ -34,5 +35,9 @@ class Game
 
   def human_solver
     HumanSolver.new.play_human_solver
+  end
+
+  def computer_solver
+    ComputerSolver.new.play_computer_solver
   end
 end

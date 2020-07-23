@@ -2,10 +2,10 @@
 
 # Defines all messages that are displayed to the user
 module UserInteraction
-  def req_input
+  def req_input(req_message)
     input = 'x'
     loop do
-      puts 'Make a guess! (6 Numbers between 1-6, Format: 123456)'
+      puts "#{req_message} (6 Numbers between 1-6, Format: 123456)"
       input = gets.chomp.split('').to_a
       break if input.length == 6 && validate_numbers?(input)
     end
@@ -22,9 +22,9 @@ module UserInteraction
       puts `clear`
       Game.new.play
     end
-    #return unless STDIN.getch == 'y'
+    # return unless STDIN.getch == 'y'
 
-    #puts `clear`
-    #Game.new.play
+    # puts `clear`
+    # Game.new.play
   end
 end
